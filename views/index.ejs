@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %>></title>
+</head>
+<body>
+  <% if (locals.categories) { %>
+    <ul>
+      <% categories.forEach((category) => { %>
+        <li><%= category.name %></li>
+        <% if (locals.items) { %>
+          <ul>
+            <% items.filter((item) => item.category_id == category.id).forEach((el) => { %>
+              <li><%= el.name %></li>
+            <% }) %>
+          </ul>
+        <% } %>
+      <% }) %>
+    </ul>
+  <% } %>
+</body>
+</html>

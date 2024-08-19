@@ -1,11 +1,15 @@
 const pool = require('./pool');
 
 async function getAllCategories() {
-  console.log('Get all categories WIP');
+  const { rows } = await pool.query('SELECT * FROM categories');
+
+  return rows;
 };
 
 async function getAllItems() {
-  console.log('Get all items WIP');
+  const { rows } = await pool.query('SELECT * FROM items');
+
+  return rows;
 };
 
 module.exports = {
