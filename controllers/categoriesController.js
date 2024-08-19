@@ -1,20 +1,15 @@
 const { body, validationResult } = require('express-validator');
 const db = require('../database/queries');
 
-const index = async (req, res) => {
-  const [categories, items] = await Promise.all([
-    db.getAllCategories(),
-    db.getAllItems()
-  ]);
+const categoriesListGet = async (req, res) => {
+  const categories = await db.getAllCategories();
 
-  res.render('index', {
-    title: 'All categories',
+  res.render('categories', {
+    title: 'Categories',
     categories: categories,
-    items: items,
-  });
-};
+  })
+}
 
 module.exports = {
-  index,
-
+  categoriesListGet,
 }

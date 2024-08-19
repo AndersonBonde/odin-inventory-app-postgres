@@ -6,6 +6,12 @@
   <title><%= title %>></title>
 </head>
 <body>
-  WIP itemsIndex
+  <% if (locals.items) { %>
+    <ul>
+      <% items.forEach((item) => { %>
+        <li><%= item.name %></li>
+      <% }) %>
+    </ul>
+  <% } %>
 </body>
 </html>
