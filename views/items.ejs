@@ -6,12 +6,16 @@
   <title><%= title %>></title>
 </head>
 <body>
-  <% if (locals.items) { %>
-    <ul>
-      <% items.forEach((item) => { %>
-        <li><%= item.name %></li>
-      <% }) %>
-    </ul>
-  <% } %>
+  <%- include('partials/sidebar_nav.ejs') %>
+  
+  <main>
+    <% if (locals.items) { %>
+      <ul>
+        <% items.forEach((item) => { %>
+          <li><%= item.name %></li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </main>
 </body>
 </html>

@@ -4,21 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %>></title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
-  <% if (locals.categories) { %>
-    <ul>
-      <% categories.forEach((category) => { %>
-        <li><%= category.name %></li>
-        <% if (locals.items) { %>
-          <ul>
-            <% items.filter((item) => item.category_id == category.id).forEach((el) => { %>
-              <li><%= el.name %></li>
-            <% }) %>
-          </ul>
-        <% } %>
-      <% }) %>
-    </ul>
-  <% } %>
+  <%- include('partials/sidebar_nav.ejs') %>
+
+  <main>
+    <h1><%= title %></h1>
+    <% if (locals.categories) { %>
+      <ul>
+        <% categories.forEach((category) => { %>
+          <li><%= category.name %></li>
+          <% if (locals.items) { %>
+            <ul>
+              <% items.filter((item) => item.category_id == category.id).forEach((el) => { %>
+                <li><%= el.name %></li>
+              <% }) %>
+            </ul>
+          <% } %>
+        <% }) %>
+      </ul>
+    <% } %>
+  </main>
 </body>
 </html>

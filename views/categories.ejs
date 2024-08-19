@@ -6,12 +6,16 @@
   <title><%= title %>></title>
 </head>
 <body>
-  <% if (locals.categories) { %>
-    <ul>
-      <% categories.forEach((category) => { %>
-        <li><%= category.name %></li>
-      <% }) %>
-    </ul>
-  <% } %>
+  <%- include('partials/sidebar_nav.ejs') %>
+
+  <main>
+    <% if (locals.categories) { %>
+      <ul>
+        <% categories.forEach((category) => { %>
+          <li><%= category.name %></li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </main>
 </body>
 </html>
