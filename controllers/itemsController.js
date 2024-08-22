@@ -10,6 +10,16 @@ const itemsListGet = async (req, res) => {
   });
 };
 
+const itemDetailGet = async (req, res) => {
+  const item = await db.getItemById(req.params.id);
+
+  res.render('item_detail', {
+    title: 'Item detail',
+    item: item,
+  });
+};
+
 module.exports = {
   itemsListGet,
+  itemDetailGet,
 }
