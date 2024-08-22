@@ -6,6 +6,13 @@ async function getAllCategories() {
   return rows;
 };
 
+async function getCategoryById(id) {
+  const { rows: category } = await pool.query('SELECT * FROM categories WHERE id = $1', [id]);
+  const { rows: items } = await pool.query('SELECT * FROM items WHERE category_id = $1', [id]);
+
+  return { category: category[0], items: items };
+};
+
 async function getAllItems() {
   const { rows } = await pool.query('SELECT * FROM items');
 
@@ -20,6 +27,7 @@ async function getItemById(id) {
 
 module.exports = {
   getAllCategories,
+  getCategoryById,
   getAllItems,
   getItemById,
 }

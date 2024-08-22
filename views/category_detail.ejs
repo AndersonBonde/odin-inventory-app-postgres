@@ -11,14 +11,19 @@
   
   <main>
     <h1><%= title %></h1>
-    <% if (locals.item) { %>
-      <h2><%= item.name %></h2>
+    <% if (locals.category) { %>
+      <h2><%= category.name %></h2>
       <ul style="list-style: none;">
-        <li><%= item.description %></li>
+        <li><%= category.description %></li>
         <br>
-        <li>Category: <a href="/inventory/categories/<%= item.category_id %>"><%= item.category_name %></a></li>
-        <li>Price: $<%= item.price %></li>
-        <li>In Stock: <%= item.numberinstock %></li>
+        <% if (locals.items) { %>
+          Items:
+          <ul>
+            <% items.forEach((item) => { %>
+              <li><a href="/inventory/items/<%= item.id %>"><%= item.name %></a></li>
+            <% }) %>
+          </ul>
+        <% } %>
       </ul>
     <% } %>
   </main>
