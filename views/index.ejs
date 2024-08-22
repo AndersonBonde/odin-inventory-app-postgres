@@ -14,11 +14,11 @@
     <% if (locals.categories) { %>
       <ul>
         <% categories.forEach((category) => { %>
-          <li><%= category.name %></li>
+          <li><a href=""><%= category.name %></a></li>
           <% if (locals.items) { %>
             <ul>
               <% items.filter((item) => item.category_id == category.id).forEach((el) => { %>
-                <li><%= el.name %></li>
+                <li><a href=""><%= el.name %></a></li>
               <% }) %>
             </ul>
           <% } %>

@@ -6,6 +6,7 @@
 
 body {
   display: flex;
+  font-size: 1.15rem;
 }
 
 /*
@@ -14,26 +15,32 @@ body {
 
 .sidebar_nav {
   height: 100vh;
-  min-width: 180px;
-  padding: 1rem;
+  min-width: 220px;
+  padding: 1.5rem;
 }
 
 .sidebar_nav ul {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   list-style: none;
+  border-right: 1px solid rgb(182, 182, 182);
+  height: 100%;
 }
 
 .sidebar_nav a {
   display: inline-block;
   text-decoration: none;
-  width: 100%;
-  padding: 2px;  
+  width: calc(100% - 1.5rem);
+  padding: 4px;  
+}
+
+.sidebar_nav a:visited {
+  color: black;
 }
 
 .sidebar_nav a:hover {
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(102, 184, 252);
 }
 
 /*
