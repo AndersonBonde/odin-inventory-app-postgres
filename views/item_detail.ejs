@@ -16,7 +16,7 @@
       <ul style="list-style: none;">
         <li><%= item.description %></li>
         <br>
-        <li>Category: <a href="/inventory/categories/<%= item.category_id %>"><%= item.category_name %></a></li>
+        <li>Category: <a href="<%= item.category_url %>"><%= item.category_name %></a></li>
         <li>Price: $<%= item.price %></li>
         <li>In Stock: <%= item.numberinstock %></li>
       </ul>

@@ -38,6 +38,20 @@ const SQL = `
     ('Meatballs 275g', 'Ground meat (mince) rolled into a ball, sometimes along with other ingredients, such as bread crumbs, minced onion, eggs, butter, and seasoning', (SELECT id FROM categories WHERE name = 'Meat'), 9.29, 17);
 `;
 
+const temp = `
+  ALTER TABLE categories
+  ADD url TEXT DEFAULT ('/');
+
+  UPDATE categories
+  SET url = CONCAT('/inventory/categories/', categories.id);
+
+  ALTER TABLE items
+  ADD url TEXT DEFAULT ('/');
+
+  UPDATE items
+  SET url = CONCAT('/inventory/items/', items.id);
+`;
+
 async function main() {
   console.log("seeding...");
   const client = new Client({
