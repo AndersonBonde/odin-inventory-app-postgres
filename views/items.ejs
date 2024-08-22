@@ -14,7 +14,7 @@
     <% if (locals.items) { %>
       <ul>
         <% items.forEach((item) => { %>
-          <li><a href=""><%= item.name %></a></li>
+          <li><a href="/inventory/items/<%= item.id %>"><%= item.name %></a></li>
         <% }) %>
       </ul>
     <% } %>
