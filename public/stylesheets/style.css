@@ -40,7 +40,8 @@ body {
 }
 
 .sidebar_nav a:hover {
-  background-color: rgb(102, 184, 252);
+  color: black;
+  background-color: rgba(121, 194, 253, 0.952);
 }
 
 /*

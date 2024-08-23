@@ -25,9 +25,16 @@ async function getItemById(id) {
   return rows[0];
 }
 
+async function createItem(obj) {
+  const { name, description, category_id, price, number_in_stock } = obj;
+
+
+}
+
 module.exports = {
   getAllCategories,
   getCategoryById,
   getAllItems,
   getItemById,
+  createItem,
 }
