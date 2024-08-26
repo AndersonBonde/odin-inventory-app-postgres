@@ -45,7 +45,6 @@ const itemCreatePost = [
   validateItem,
   async (req, res) => {
     const errors = validationResult(req);
-
     const item = Object.assign({}, req.body);
 
     if (!errors.isEmpty()) {
