@@ -58,6 +58,8 @@ const itemCreatePost = [
         errors: errors.array(),
       });
     } else {
+      await db.createItem(item);
+
       res.redirect('/');
     }
   },

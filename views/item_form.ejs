@@ -25,7 +25,15 @@
         <select name="category_id" id="category_id" class="form_control" required>
           <option value="">--Please select a category--</option>
           <% categories.forEach((category) => { %>
-            <option value="<%= category.id %>"><%= category.name %></option>
+            <% if (locals.item) { %>
+              <% if (item.category_id == category.id) { %>
+                <option value="<%= category.id %>" selected><%= category.name %></option>
+              <% } else { %>
+                <option value="<%= category.id %>"><%= category.name %></option>
+              <% } %>
+            <% } else { %>
+              <option value="<%= category.id %>"><%= category.name %></option>
+            <% } %>
           <% }) %>
         </select>
       </div>
