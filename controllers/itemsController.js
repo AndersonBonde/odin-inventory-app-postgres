@@ -10,7 +10,7 @@ const validateItem = [
     .isLength({ min: 1 }).withMessage('Please select a category.'),
   body('price')
     .isLength({ min: 1 }).withMessage('Price must not be empty.'),
-  body('number_in_stock')
+  body('numberinstock')
     .isLength({ min: 1 }).withMessage('Number in stock must not be empty.'),
 ];
 
@@ -64,9 +64,45 @@ const itemCreatePost = [
   },
 ];
 
+const itemUpdateGet = async (req, res) => {
+  const item = await db.getItemById(req.params.id);
+  const categories = await db.getAllCategories();
+
+  res.render('item_form', {
+    title: 'Update item',
+    categories: categories,
+    item: item,
+  });
+};
+
+const itemUpdatePost = [
+  validateItem,
+  async (req, res) => {
+    const errors = validationResult(req);
+    const item = Object.assign({ id: req.params.id }, req.body);
+
+    if (!errors.isEmpty()) {
+      const categories = await db.getAllCategories();
+
+      res.render('item_form', {
+        title: 'Update item',
+        categories: categories,
+        item: item,
+        errors: errors.array(),
+      });
+    } else {
+      const updated = await db.updateItem(item.id, item);
+
+      res.redirect(updated.url);
+    }
+  }
+];
+
 module.exports = {
   itemsListGet,
   itemDetailGet,
   itemCreateGet,
   itemCreatePost,
+  itemUpdateGet,
+  itemUpdatePost,
 }
