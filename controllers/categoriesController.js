@@ -38,7 +38,7 @@ const categoryCreatePost = [
   async (req, res) => {
     const errors = validationResult(req);
     const category = Object.assign({}, req.body);
-
+    
     if (!errors.isEmpty()) {
       res.render('category_form', {
         title: 'Create a new category',
@@ -53,9 +53,40 @@ const categoryCreatePost = [
   }
 ];
 
+const categoryUpdateGet = async (req, res) => {
+  const { category } = await db.getCategoryById(req.params.id);
+
+  res.render('category_form', {
+    title: 'Update category',
+    category: category,
+  });
+};
+
+const categoryUpdatePost = [
+  validateCategory,
+  async (req, res) => {
+    const errors = validationResult(req);
+    const category = Object.assign({ id: req.params.id }, req.body);
+
+    if (!errors.isEmpty()) {
+      res.render('category_form', {
+        title: 'Update category',
+        category: category,
+        errors: errors.array(),
+      });
+    } else {
+      const updated = await db.updateCategory(category.id, category);
+
+      res.redirect(updated.url);
+    }
+  }
+];
+
 module.exports = {
   categoriesListGet,
   categoryDetailGet,
   categoryCreateGet,
   categoryCreatePost,
+  categoryUpdateGet,
+  categoryUpdatePost,
 }
