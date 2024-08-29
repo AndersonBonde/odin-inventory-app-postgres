@@ -4,14 +4,14 @@ async function getAllCategories() {
   const { rows } = await pool.query('SELECT * FROM categories');
 
   return rows;
-};
+}
 
 async function getCategoryById(id) {
   const { rows: category } = await pool.query('SELECT * FROM categories WHERE id = $1', [id]);
   const { rows: items } = await pool.query('SELECT * FROM items WHERE category_id = $1', [id]);
 
   return { category: category[0], items: items };
-};
+}
 
 async function createCategory(obj) {
   const { name, description } = obj;
@@ -33,6 +33,10 @@ async function updateCategory(id, { name, description }) {
   const { rows } = await pool.query(`SELECT * FROM categories WHERE id = $1`, [id]);
 
   return rows[0];
+}
+
+async function deleteCategory(id) {
+  await pool.query('DELETE FROM categories WHERE categories.id = $1', [id]);
 }
 
 async function getItemById(id) {
@@ -59,13 +63,19 @@ async function updateItem(id, obj) {
   return rows[0];
 }
 
+async function deleteItem(id) {
+  await pool.query('DELETE FROM items WHERE items.id = $1', [id]);
+}
+
 module.exports = {
   getAllCategories,
   getCategoryById,
   createCategory,
   updateCategory,
+  deleteCategory,
   getAllItems,
   getItemById,
   createItem,
   updateItem,
+  deleteItem,
 }

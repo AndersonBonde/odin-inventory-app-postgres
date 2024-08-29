@@ -98,6 +98,21 @@ const itemUpdatePost = [
   }
 ];
 
+const itemDeleteGet = async (req, res) => {
+  const item = await db.getItemById(req.params.id);
+
+  res.render('item_delete', {
+    title: 'Delete item',
+    item: item,
+  });
+};
+
+const itemDeletePost = async (req, res) => {
+  await db.deleteItem(req.params.id);
+
+  res.redirect('/');
+};
+
 module.exports = {
   itemsListGet,
   itemDetailGet,
@@ -105,4 +120,6 @@ module.exports = {
   itemCreatePost,
   itemUpdateGet,
   itemUpdatePost,
+  itemDeleteGet,
+  itemDeletePost,
 }

@@ -82,6 +82,22 @@ const categoryUpdatePost = [
   }
 ];
 
+const categoryDeleteGet = async (req, res) => {
+  const { category, items } = await db.getCategoryById(req.params.id);
+
+  res.render('category_delete', {
+    title: 'Delete Category',
+    category: category,
+    items: items,
+  })
+};
+
+const categoryDeletePost = async (req, res) => {
+  await db.deleteCategory(req.params.id);
+  
+  res.redirect('/');
+};
+
 module.exports = {
   categoriesListGet,
   categoryDetailGet,
@@ -89,4 +105,6 @@ module.exports = {
   categoryCreatePost,
   categoryUpdateGet,
   categoryUpdatePost,
+  categoryDeleteGet,
+  categoryDeletePost,
 }
