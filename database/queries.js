@@ -44,7 +44,7 @@ async function getItemById(id) {
 async function createItem(obj) {
   const { name, description, category_id, price, numberinstock } = obj;
 
-  await pool.query('INSERT INTO items (name, description, category_id, price, numberInStock) VALUES ($1, $2, $3, $4, $5)', [name, description, category_id, price, number_in_stock]);
+  await pool.query('INSERT INTO items (name, description, category_id, price, numberInStock) VALUES ($1, $2, $3, $4, $5)', [name, description, category_id, price, numberinstock]);
 
   await pool.query(`UPDATE items SET url = CONCAT('/inventory/items/', items.id) WHERE name = $1`, [name]);
 }
